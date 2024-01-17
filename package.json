@@ -12,7 +12,6 @@
   },
  
   "dependencies": {
-    "@rollup/rollup-win32-x64-msvc": "^4.9.5",
     "@vueuse/core": "^10.7.0",
     "axios": "^1.6.5",
     "moment": "^2.30.1",

@@ -11,6 +11,8 @@ interface PeoplesEmits {
   (e: "update:currentName", value: string): void;
 }
 
+const searchUsername = ref('')
+
 interface IChats {
   chats: {
     active: boolean;
@@ -71,12 +73,13 @@ const search = async (username: string) => {
   if (data.data.users) {
     isEmptyUsers.value = false;
     foundUsers.value = data.data.users;
-  } else {
+  } else if (!data.data.users) {
     isEmptyUsers.value = true;
   }
 };
 
 const handleInput = debounce((event) => {
+  searchUsername.value = event.target.value
   search(event.target.value);
 }, 500);
 
@@ -111,7 +114,7 @@ onMounted(() => {
       />
     </div>
     <div
-      class="absolute top-10 bg-[#002F55] w-full flex flex-col gap-2"
+      class="absolute top-10 bg-[#002F55] w-full flex flex-col gap-2 z-20 h-screen"
       v-show="!isEmptyUsers"
     >
       <PeopleSearchBlock
