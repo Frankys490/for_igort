@@ -132,6 +132,11 @@ watch(isEmailEdit, () => {
     currentStage.value = 1;
   }
 });
+
+const logout = () => {
+  localStorage.removeItem("JwtToken");
+  router.push("/");
+};
 </script>
 <template lang="html">
   <div class="flex justify-center items-center h-screen relative">
@@ -233,6 +238,7 @@ watch(isEmailEdit, () => {
                 />
               </SettingsElement>
             </div>
+            <Button label="Выйти" size="small" @click="logout" />
           </div>
         </div>
       </template>
