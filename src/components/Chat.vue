@@ -36,10 +36,12 @@ const props = defineProps<ChatProps>();
 const router = useRouter();
 
 onMounted(async () => {
-  const { status } = await setOnline();
-  if (status !== 200) {
-    router.push("auth");
-  }
+  setTimeout(async () => {
+    const { status } = await setOnline();
+    if (status === 401) {
+      router.push("auth");
+    }
+  }, 300);
   setInterval(async () => {
     const { status } = await setOnline();
     if (status !== 200) {

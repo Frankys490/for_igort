@@ -42,7 +42,7 @@ setInterval(() => {
   if (currentName.value !== "") {
     getChat();
   }
-}, 1000);
+}, 800);
 </script>
 <template lang="html">
   <Splitter class="h-screen">
