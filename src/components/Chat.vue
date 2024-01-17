@@ -35,19 +35,23 @@ interface ChatProps {
 const props = defineProps<ChatProps>();
 const router = useRouter();
 
-onMounted(async () => {
+const initial = async () => {
   setTimeout(async () => {
     const { status } = await setOnline();
     if (status === 401) {
       router.push("auth");
     }
+    setInterval(async () => {
+      const { status } = await setOnline();
+      if (status === 401) {
+        router.push("auth");
+      }
+    }, 29000);
   }, 300);
-  setInterval(async () => {
-    const { status } = await setOnline();
-    if (status !== 200) {
-      router.push("auth");
-    }
-  }, 29000);
+};
+
+onMounted(() => {
+  initial();
 });
 </script>
 <template lang="html">
